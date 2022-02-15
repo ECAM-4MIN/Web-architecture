@@ -1,0 +1,24 @@
+<!ELEMENT recipe (author?,tags?,content)>
+<!ATTLIST recipe title CDATA #REQUIRED>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT tags (tag+)>
+<!ELEMENT tag (#PCDATA)>
+<!ELEMENT content (introduction?,ingredients,realisation,direction,dietetic?,tricks?)>
+<!ELEMENT introduction (#PCDATA)>
+<!ELEMENT ingredients (item+)>
+<!ATTLIST ingredients quantity NMTOKEN #REQUIRED>
+<!ELEMENT item (#PCDATA)>
+<!ELEMENT realisation (difficulty?,preparation,cooking,total_time?,score?)>
+<!ELEMENT difficulty (#PCDATA)>
+<!ELEMENT preparation (#PCDATA)>
+<!ATTLIST preparation unit NMTOKEN #REQUIRED>
+<!ELEMENT cooking (#PCDATA)>
+<!ATTLIST cooking unit NMTOKEN #REQUIRED>
+<!ELEMENT total_time (#PCDATA)>
+<!ATTLIST total_time unit NMTOKEN #REQUIRED>
+<!ELEMENT score (#PCDATA)>
+<!ELEMENT direction (step+)>
+<!ELEMENT step (#PCDATA)>
+<!ATTLIST step num NMTOKEN #IMPLIED>
+<!ELEMENT dietetic (#PCDATA)>
+<!ELEMENT tricks (#PCDATA)>
