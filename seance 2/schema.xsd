@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="recipe">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="author"/>
+                <xs:element minOccurs="0" ref="tags"/>
+                <xs:element ref="image"/>
+                <xs:element ref="content"/>
+            </xs:sequence>
+            <xs:attribute name="title" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="author" type="xs:string"/>
+    <xs:element name="tags">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="tag"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tag" type="xs:string"/>
+    <xs:element name="image">
+        <xs:complexType>
+            <xs:attribute name="link" type="xs:string" use="required"></xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="content">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="introduction"/>
+                <xs:element ref="ingredients"/>
+                <xs:element ref="realisation"/>
+                <xs:element ref="direction"/>
+                <xs:element minOccurs="0" ref="dietetic"/>
+                <xs:element minOccurs="0" ref="tricks"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="introduction" type="xs:string"/>
+    <xs:element name="ingredients">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="item"/>
+            </xs:sequence>
+            <xs:attribute name="quantity" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="1" />
+                        <xs:maxInclusive value="20" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="item" type="xs:string"/>
+    <xs:element name="realisation">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="difficulty"/>
+                <xs:element ref="preparation"/>
+                <xs:element ref="cooking"/>
+                <xs:element minOccurs="0" ref="total_time"/>
+                <xs:element minOccurs="0" ref="score"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="difficulty" type="xs:string"/>
+    <xs:element name="preparation">       
+        <xs:complexType mixed="true">
+
+            <xs:attribute name="unit" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="cooking">
+        <xs:complexType mixed="true">
+            <xs:attribute name="unit" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="total_time">
+        <xs:complexType mixed="true">
+            <xs:attribute name="unit" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="score" type="xs:string"/>
+    <xs:element name="direction">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="step"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="step">
+        <xs:complexType mixed="true">
+            <xs:attribute name="num" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dietetic" type="xs:string"/>
+    <xs:element name="tricks" type="xs:string"/>
+</xs:schema>

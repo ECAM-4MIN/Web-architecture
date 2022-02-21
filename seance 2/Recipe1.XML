@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="stylesheet.xsl"?>
+<recipe title="Recette Soufflé léger au chou-fleur" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./schema.xsd">
+    <author>Isabelle Bonneau</author>
+    <image link="img/soufflé.jpg"></image>
+    <content>
+        <introduction>
+            Ce soufflé est très facile à réaliser, très léger et moelleux, un bon accompagnement pour viandes et poissons !
+        </introduction>
+        <ingredients quantity="4">
+            <item>600 g de chou-fleur</item>
+            <item>200 g de fromage blanc à 20%</item>
+            <item>40 g de fromage rapé</item>
+            <item>2 oeufs</item>
+            <item>noix de muscade fraichement rapée</item>
+            <item>sel</item>
+            <item>poivre</item>
+        </ingredients>
+        <realisation>
+            <difficulty>Facile</difficulty>
+            <preparation unit="min">20</preparation> 
+            <cooking unit="min">40</cooking>
+            <total_time unit="h">1</total_time>
+        </realisation>
+        <direction>
+            <step num="1">
+                Faites cuire le chou-fleur à la vapeur après l'avoir lavé. Préchauffez votre four à 180°C.
+            </step>
+            <step num="2">
+                Séparez les blancs des jaunes d'oeufs. Mixez le chou-fleur avec les jaunes et le fromage blanc. Salez, poivrez et ajouter la noix de muscade ainsi que le fromage rapé.
+            </step>
+            <step num="3">
+                Montez les blancs d'oeufs en neige et incorporez les délicatement au chou-fleur.
+            </step>
+            <step num="4">
+                Versez le tout dans un plat allant au four ou 4 petits plats individuels et faites cuire au four à 180°C entre 25 et 30 minutes. N'ouvrez surtout pas la porte du four avant la fin de la cuisson, le soufflé retomberait !
+            </step>
+            <step>
+                Servez chaud dès que le dessus est doré.
+            </step>
+        </direction>
+    </content>
+</recipe>
