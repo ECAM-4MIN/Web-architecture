@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>TODO LIST</title>
+        <link rel="stylesheet" href="sheet.css">
+    </head>
+    
+    <body>
+        <h1>Task list</h1>
+        <ul> 
+            <% for (var i =0; i <=todo.length -1;  i++ ) { %>
+            <li>  <%= todo[i] %> <a href="/del_item?item=<%=todo[i]%>">delete</a> </li>
+            <% } %>
+        </ul>
+        <div>
+            <h2>Add a new task :</h2>
+            <form action="/add_item">
+                <input type="text" id="item" size="14" name="item">
+                <input type="submit" value="add">
+            </form>
+        </div>
+    </body>
+    
+</html>
+
+
