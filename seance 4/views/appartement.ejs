@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Create your appartement</title>
+        <!-- <link rel="stylesheet" href="sheet.css"> -->
+    </head>
+    
+    <body>
+        <h1>List of the rooms</h1>
+        <ul> 
+            <% for (var i =0; i <=rooms.length -1;  i++ ) { %>
+            <li>  <%= rooms[i].name %> <%= rooms[i].area %> m² </li>
+            <% } %>
+        </ul>
+        <p>Total area of the appartement : <%= area%> m²</p>
+        <div>
+            <h2>Add a new room</h2>
+            <form action="/new_room">
+                <input type="submit" value="new">
+            </form>
+        </div>
+    </body>
+    
+</html>
