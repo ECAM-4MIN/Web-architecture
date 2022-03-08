@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>Capteurs</h1>
+
+    
+    <form id="tempForm" action="">
+        <text> <h3>Temperature </h3></text>
+        <input type="text" id="tempInput"/>
+        <input type="submit" value="send"/>
+    </form>
+
+    
+    <form id="humidForm" action="">
+        <text> <h3>Humidity </h3></text>
+        <input type="text" id="humidInput"/>
+        <input type="submit" value="send"/>
+    </form>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        var tempForm = document.getElementById('tempForm');
+        var tempInput = document.getElementById('tempInput');
+        var tempMessage = document.getElementById('tempMessage');
+
+        var humidForm = document.getElementById('humidForm');
+        var humidInput = document.getElementById('humidInput');
+        var humidMessage = document.getElementById('humidMessage');
+
+        tempForm.addEventListener('submit', function(e){
+            e.preventDefault();
+            socket.emit('temp message', tempInput.value);
+        });
+
+        humidForm.addEventListener('submit', function(e){
+            e.preventDefault();
+            socket.emit('humid message', humidInput.value);
+        });
+
+        
+    </script>
+</body>
+</html>

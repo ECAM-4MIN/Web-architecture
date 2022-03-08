@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>STATION METEO BELGIQUE</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>Meteo</h1>
+
+    <div>Temperature : <span id="tempMessage">0</span>°C</div>
+    <div>Humidity : <span id="humidMessage">0</span>%</div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        // Emit on the other page
+        socket.on('temp message', function(msg){
+            console.log(msg);
+            document.getElementById('tempMessage').innerHTML = msg;
+        });
+
+        socket.on('humid message', function(msg){
+            console.log(msg);
+            document.getElementById('humidMessage').innerHTML = msg;
+        });
+    </script>
+</body>
+</html>
