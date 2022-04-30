@@ -3,10 +3,13 @@ const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const path = require("path");
 
+// const swaggerJsDoc = require('swagger-jsdoc');
+// const swaggerUi = require('swagger-ui-express');
+
+
 
 // Database
 const db = require('./app/config/database');
-
 
 // Test DB
 db.authenticate()
@@ -30,15 +33,40 @@ app.use(express.static(publicDirectory));
 app.use(express.static("img"));
 
 // Body Parser to use json
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+
+// // swagger
+// const swaggerOptions = {
+//   swaggerDefinition: {
+//     info:{
+//       title: "Tragency",
+//       description: "API",
+//       contact:{
+//         name: "Nicolas Samelson"
+//       },
+//       servers: ["http://localhost:3000"]
+//     }
+
+//   },
+//   apis: ["server.js","app/routes/*.js"]
+  
+// };
+
+// const swaggerDocs = swaggerJsDoc(swaggerOptions);
+// app.use('/api-docs',swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Index route
 app.get("/", (req, res) => {
   res.render('index',{layout: 'landing'})
 });
 
-// destination routes
+// All routes
 app.use('/destinations',require('./app/routes/destinations'));
+app.use('/agencies', require('./app/routes/agencies'));
+app.use('/links', require('./app/routes/links'));
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

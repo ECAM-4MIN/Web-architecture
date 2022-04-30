@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const Destination = db.define('destinations',{
+const Agency = db.define('agencies',{
     // id: {
     //     type: Sequelize.INTEGER,
     //     primaryKey: true
@@ -9,12 +9,15 @@ const Destination = db.define('destinations',{
     name: {
         type: Sequelize.STRING
     },
-    description: {
+    email: {
         type: Sequelize.STRING
     },
-    country: {
+    phone: {
+        type: Sequelize.STRING
+    },
+    localization: {
         type: Sequelize.STRING
     },
 
 })
-module.exports = Destination;
+module.exports = Agency;
