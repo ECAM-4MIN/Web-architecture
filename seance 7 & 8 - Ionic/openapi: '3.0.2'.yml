@@ -1,0 +1,407 @@
+openapi: '3.0.2'
+info:
+  title: Tragency
+  description: Seance 6 of the course web architecture
+  version: '1.0'
+servers:
+  - url: http://localhost:3000
+  
+
+paths:
+  /destinations:
+    get:
+      summary: List all the destinations
+      responses:
+        '200':
+          description: A JSON array of destinations
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: '#/components/schemas/Destinations'
+
+
+  # DESTINATION
+  /destinations/id={destId}:
+    get:
+      summary: Return a destination description with id or name
+      parameters:
+        - name: destId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: A JSON dict of destination
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Destination'
+    delete:
+      summary: Deletes a destination
+      parameters:
+        - name: destId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+    put:
+      summary: Update a destination
+      parameters:
+        - name: destId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/Destination'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+
+  /destinations/add:
+    post:
+      summary: Add a destination
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/Destination'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+
+  /destinations/search?term={term}:
+    get:
+      summary: Search with a term and get all matching destinations
+      parameters:
+        - name: term
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: string
+            minimum: 1
+            example: Nice
+      responses:
+        '200':
+          description: A JSON dict of destination
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: '#/components/schemas/Destinations'
+
+  # AGENCY
+  /agencies: 
+    get:
+      summary: get all agencies
+      responses:
+        '200':
+          description: A JSON array of agencies
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: '#/components/schemas/Agencies'
+
+  /agencies/id={agenId}:
+    get:
+      summary: Return an agency information with id
+      parameters:
+        - name: agenId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: A JSON dict of Agency
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Agency'
+    delete:
+      summary: Deletes a agency
+      parameters:
+        - name: agenId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+          example: 3
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+  /agencies/add:  
+    post:
+      summary: add new agency
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/Agency'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+    
+  /agencies/search/id={destId}:
+    get:
+      summary: Return all the agencies linked to the destination
+      parameters:
+        - name: destId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+          example: 4
+      responses:
+        '200':
+          description: A JSON array of agencies
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Agency'
+  /agencies/contact:
+    post:
+      summary: Send a form to contact the selected agency
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                destination_id:
+                  type: integer
+                  format: int64
+                  example: 4
+                  required:
+                    - "true"
+                agency_id:
+                  type: integer
+                  format: int64
+                  example: 6
+                  required:
+                    - "true"
+                name:
+                    type: string
+                    example: "Ivan Totravel"
+                email:
+                  type: string
+                  example: ivan@gmail.com
+                phone:
+                  type: string
+                  example: +324871937
+
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+
+
+  # LINKS
+  /links:
+    get:
+      summary: get all links
+      responses:
+        '200':
+          description: A JSON array of links
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: '#/components/schemas/Links'
+  /links/add:
+    post:
+      summary: add new link
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/Link'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+
+      
+  /links/id={linkId}:
+    get:
+      summary: Return an link information with id
+      parameters:
+        - name: linkId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: A JSON dict of Link
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Link'
+    delete:
+      summary: Deletes a link
+      parameters:
+        - name: linkId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+          example: 3
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/GoodResponse'
+
+
+components:
+  schemas:
+
+    GoodResponse:
+      description: A good response
+      properties:
+        message: 
+          type: string
+          example: Operation done
+    
+    Destination:
+      description: Model containing Destination info
+      properties:
+        # id:
+        #   type: integer
+        #   example: 1
+        name:
+          type: string
+          example: Ballito Green Estate
+        description:
+          type: string
+          example: Big Estate
+        country:
+          type: string
+          example: South Africa  
+
+    Destinations:
+      description: Model containing multiple destinations
+      items:
+        type: object         
+        $ref: '#/components/schemas/Destination'
+          
+    Agency:
+      description: Model contaning agency info
+      properties:
+        name:
+          type: string
+          example: WeKeepYourMoney
+        email:
+          type: string
+          example: wekeepyourmoney@gmail.com
+        phone:
+          type: string
+          example: +324871937
+        localization:
+          type: string
+          example: wall street n°8
+
+    Agencies:
+      description: Model containing multiple agencies
+      items:
+        type: object         
+        $ref: '#/components/schemas/Agency'
+
+    Link:
+      description: Model containing link info
+      properties:
+        agency_id:
+          type: integer
+          example: 1
+        destination_id:
+          type: integer
+          example: 1
+    Links:
+      description: Model containing multiple links
+      items:
+        type: object         
+        $ref: '#/components/schemas/Link'
