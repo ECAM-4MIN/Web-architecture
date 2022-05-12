@@ -56,6 +56,7 @@ export class Tab2Page {
             this.destForm.reset();
             this.router.navigate(['/tabs/tab1']);
             
+            
           })
         });
     }
